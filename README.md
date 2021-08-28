@@ -1,7 +1,7 @@
 # Portscanner
 Threaded Portscanner in c++
 I just remade my Python Portscanner into c++
-This Script is using a modified version of EasySock() and Thread_Pool()!
+This Script is using a modified version of EasySock(https://github.com/Terraminator/Easy_Sock) and Thread_Pool(https://github.com/Terraminator/Thread_Pool)!
 
 ## Ascii Art  
 PLEASE IF SOMEONE IS GOOD IN ASCII ARTS AND C++ MASKS OPEN A PULLREQUEST AND REPLACE MY BAD ASCII IMAGE!!!  
