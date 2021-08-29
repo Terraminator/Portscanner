@@ -1,17 +1,9 @@
 #include "EasySock.hpp"
 #include "Thread_Pool.hpp"
 #include <chrono>
+#include <fstream>
 typedef std::chrono::high_resolution_clock Clock;
 
-int scanner(string target, int port) {
-	EasySock easysock(target, port);
-	int r = easysock.connect_to_target();
-	easysock.clean_up();
-	if (r == 0) {
-		cout << "Port " << port << " is opened!" << endl;
-	}
-	return(0);
-}
 
 void banner() {
 	system("color a");
@@ -29,6 +21,20 @@ void banner() {
 	cout << endl;
 	cout << endl;
 	cout << endl;
+}
+
+
+int scanner(string target, int port) {
+	EasySock easysock(target, port);
+	int r = easysock.connect_to_target();
+	easysock.clean_up();
+	if (r == 0) {
+		ofstream writer("ports.txt", ios::app);
+		writer << port << endl;
+		writer.close();
+		//cout << "Port " << port << " is opened!" << endl;
+	}
+	return(0);
 }
 
  string get_ip() {
@@ -54,6 +60,14 @@ int main() {
 		tpool.start_thread(scanner, target, i);
 	}
 	tpool.wait_for_pool();
+	string tp;
+	std::ifstream ports("ports.txt");
+	std::string line;
+	while (std::getline(ports, line)) {
+		if (line != "") {
+			cout << "Port " + line + " is opened!" << endl;
+		}
+	}
 	auto t2 = Clock::now();
 	cout << "Scan for " << target << " finished in " << chrono::duration_cast<std::chrono::seconds>(t2 - t1).count() << " Seconds!" << endl;
 	cout << "__________________________________________________";

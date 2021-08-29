@@ -23,7 +23,6 @@ public:
                 Pool.emplace_back(target, arg);
             }
             catch (...) {
-                for (int w{ 0 }; w < 700000;w++);
                 goto loop;
             }
         }
@@ -36,7 +35,6 @@ public:
             Pool.emplace_back(target, sarg, arg);
         }
         catch (...){
-            for (int w{ 0 }; w < 700000;w++);
             goto start;
         }
         return 0;
