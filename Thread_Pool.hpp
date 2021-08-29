@@ -9,22 +9,29 @@ class Thread_Pool {
 public:
     vector<thread> Pool;
 
-    int start_pool() {
+    int wait_for_pool() {
         for (thread& t : Pool) {
             t.join();
         }
         return 0;
     }
 
-    int create_pool(int number, int (*target)(int), int arg) {
+    int start_pool(int number, int (*target)(int), int arg) {
         for (int i{ 0 }; i < number; i++) {
             Pool.emplace_back(target, arg);
         }
         return 0;
     }
 
-    int add_thread_to_pool(int (*target)(string, int), string sarg, int arg) {
-        Pool.emplace_back(target, sarg, arg);
+    int start_thread(int (*target)(string, int), string sarg, int arg) {
+        start:
+        try {
+            Pool.emplace_back(target, sarg, arg);
+        }
+        catch (...){
+            for (int w{ 0 }; w < 700000;w++);
+            goto start;
+        }
         return 0;
     }
 };
