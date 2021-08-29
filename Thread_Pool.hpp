@@ -18,7 +18,14 @@ public:
 
     int start_pool(int number, int (*target)(int), int arg) {
         for (int i{ 0 }; i < number; i++) {
-            Pool.emplace_back(target, arg);
+            loop:
+            try {
+                Pool.emplace_back(target, arg);
+            }
+            catch (...) {
+                for (int w{ 0 }; w < 700000;w++);
+                goto loop;
+            }
         }
         return 0;
     }
