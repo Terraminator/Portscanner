@@ -51,10 +51,9 @@ int main() {
 	Thread_Pool tpool;
 	auto t1 = Clock::now();
 	for (int i{ 1 }; i < 4501; i++) {
-		tpool.add_thread_to_pool(scanner, target, i);
-		Sleep(1);
+		tpool.start_thread(scanner, target, i);
 	}
-	tpool.start_pool();
+	tpool.wait_for_pool();
 	auto t2 = Clock::now();
 	cout << "Scan for " << target << " finished in " << chrono::duration_cast<std::chrono::seconds>(t2 - t1).count() << " Seconds!" << endl;
 	cout << "__________________________________________________";
