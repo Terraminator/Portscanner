@@ -32,7 +32,6 @@ int scanner(string target, int port) {
 		ofstream writer("ports.txt", ios::app);
 		writer << port << endl;
 		writer.close();
-		//cout << "Port " << port << " is opened!" << endl;
 	}
 	return(0);
 }
