@@ -45,7 +45,7 @@ int scanner(string target, int port) {
 }
 
 int clear_ports() {
-	std::ofstream ofs("test.txt", std::ofstream::trunc);
+	std::ofstream ofs("ports.txt", std::ofstream::trunc);
 
 	ofs << "";
 
