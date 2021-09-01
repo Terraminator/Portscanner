@@ -77,6 +77,7 @@ int main() {
 	}
 	auto t2 = Clock::now();
 	cout << "Scan for " << target << " finished in " << chrono::duration_cast<std::chrono::seconds>(t2 - t1).count() << " Seconds!" << endl;
-	cout << "__________________________________________________";
+	cout << "__________________________________________________" << endl;
+	system("pause");
 	return(0);
 }
