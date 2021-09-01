@@ -44,6 +44,16 @@ int scanner(string target, int port) {
 	return(0);
 }
 
+int clear_ports() {
+	std::ofstream ofs("test.txt", std::ofstream::trunc);
+
+	ofs << "";
+
+	ofs.close();
+	return(0);
+}
+
+
  string get_ip() {
 	 string target;
 	 cout << "If you just  want to test the script use: 45.33.32.156(Ip of scanme.nmap.org)!"<< endl;
@@ -59,7 +69,7 @@ int main() {
 	for (target = get_ip(); target.length() < 7; target=get_ip()) {
 		cout << "Please enter a valid Ip!" << endl;
 	}
-
+	clear_ports();
 	cout << "Scan for " << target << " started!" << endl;
 	Thread_Pool tpool;
 	auto t1 = Clock::now();
