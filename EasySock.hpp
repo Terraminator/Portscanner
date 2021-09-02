@@ -104,8 +104,6 @@ public:
         int timeout = 1000;
         setsockopt(Socket, SOL_SOCKET, SO_RCVTIMEO, (char*)&timeout, sizeof(int));
         while ((response_length = recv(Socket, buffer, 1024, 0)) > 0) {
-            cout << "Response len: " << response_length << endl;
-            cout << "Buffer: " << buffer << endl;
             response += string(buffer);
         }
         string rresponse = response;
